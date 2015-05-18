@@ -2091,7 +2091,7 @@ fn test_fib_10() {
 
 With that done, you can use `cargo test` to make sure the crate compiles and passes its one and only test, and `cargo doc` to generate the documentation and see if it looks alright.
 
-All you need to do now is to commit the changes to the repository, and publish it somewhere publically accessible (or privately, if you aren't interesting in letting other people use your awesome macro).  To use the crate, you just need to add a dependency to it in your crate's `Cargo.toml` and then link to it.  For example, [the completed recurrence crate](https://gist.github.com/DanielKeep/759ee2f732ecd98cc62e) is published as a GitHub Gist.  To use it, just add it as a Cargo dependency.
+All you need to do now is to commit the changes to the repository, and publish it somewhere publically accessible (or privately, if you aren't interesting in letting other people use your awesome macro).  To use the crate, you just need to add a dependency to it in your crate's `Cargo.toml` and then link to it.  For example, [the completed recurrence crate](https://github.com/DanielKeep/rust-recurrence) is published as a Git repository.  To use it, just add it as a Cargo dependency.
 
 Now, go forth and metaprogram!
 
