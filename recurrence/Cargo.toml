@@ -1,0 +1,11 @@
+[package]
+
+name = "recurrence"
+version = "0.1.0"
+authors = ["Writer McAuthor <writer.mcauthor@mail.com>"]
+
+[lib]
+
+name = "recurrence"
+crate-type = ["dylib"]
+plugin = true
