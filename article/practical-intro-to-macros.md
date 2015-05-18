@@ -2098,3 +2098,5 @@ Now, go forth and metaprogram!
 # Postscript
 
 Thanks to `snake_case`, `Yurume`, `Rym`, and `ogham` for providing feedback.
+
+This work is licensed under both the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/) and the [MIT license](http://opensource.org/licenses/MIT).
