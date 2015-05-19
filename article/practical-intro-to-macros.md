@@ -459,7 +459,7 @@ This particular macro is inspired by a function in the D standard library.  Spec
 If you aren't familiar, a recurrence relation is a sequence where each value is defined in terms of one or more *previous* values, with one or more initial values to get the whole thing started.  For example, the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) can be defined by the relation:
 
 <div class="katex" style="font-size: 100%; text-align: center;">
-    <span class="katex"><span class="katex-inner"><span style="height: 0.68333em;" class="strut"></span><span style="height: 0.891661em; vertical-align: -0.208331em;" class="strut bottom"></span><span class="base textstyle uncramped"><span class="reset-textstyle displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mord">0</span><span class="mpunct">,</span><span class="mord">1</span><span class="mpunct">,</span><span class="mpunct">…</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span></span></span></span></span></span>
+    <span class="katex"><span class="katex-inner"><span style="height: 0.68333em;" class="strut"></span><span style="height: 0.891661em; vertical-align: -0.208331em;" class="strut bottom"></span><span class="base textstyle uncramped"><span class="reset-textstyle displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mord">0</span><span class="mpunct">,</span><span class="mord">1</span><span class="mpunct">,</span><span class="mpunct">…</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit" style="margin-right: 0.13889em;">F</span><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em; margin-left: -0.13889em;" class=""><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mbin">-</span><span class="mord">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;" class="">​</span></span>​</span></span></span></span></span></span></span></span>
 </div>
 
 Thus, the first two numbers in the sequence are 0 and 1, with the third being <em>F<sub>0</sub></em> + <em>F<sub>1</sub></em> = 0 + 1 = 1, the fourth <em>F<sub>1</sub></em> + <em>F<sub>2</sub></em> = 1 + 1 = 2, and so on forever.
@@ -481,13 +481,13 @@ A macro invocation in Rust is, in contrast to something like C, not a wholly sep
 However, the status of macro invocations as first-class members of the AST means that the Rust parser has to be able to parse them into something sensible, even when they use syntax that Rust itself doesn't support.  The way this is done is by parsing the contents of an invocation into "token trees".  If we take the `fib` example above, given the invocation:
 
 ```ignore
-recurrence![ a[n]: u64 = 1, 1 ... a[n-1] + a[n-2] ]
+recurrence![ a[n]: u64 = 0, 1 ... a[n-1] + a[n-2] ]
 ```
 
 the invocation arguments stored in the AST look something like:
 
 ```text
-[ `a` `[ ]` `:` `u64` `=` `1` `,` `1` `...` `a` `[ ]` `+` `a` `[ ]` ]
+[ `a` `[ ]` `:` `u64` `=` `0` `,` `1` `...` `a` `[ ]` `+` `a` `[ ]` ]
         ^                                         ^             |
      [ `n` ]                               [ `n` `-` `1` ]      ^
                                                          [ `n` `-` `2` ]
@@ -504,7 +504,7 @@ This means that not only is *where* you can use a macro restricted, you also *ca
 Usually, when working on a new macro, the first thing I do is decide what the macro invocation should look like.  In this specific case, my first attempt looked like this:
 
 ```ignore
-let fib = recurrence![a[n] = 1, 1, ..., a[n-1] + a[n-2]];
+let fib = recurrence![a[n] = 0, 1, ..., a[n-1] + a[n-2]];
 
 for e in fib.take(10) { println!("{}", e) }
 ```
@@ -545,49 +545,49 @@ As an exercise, let's take the proposed input and feed it through the rule, to s
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>⌂</code></td>
-            <td><code>a[n] = 1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>a[n] = 0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code> ⌂</code></td>
-            <td><code>[n] = 1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>[n] = 0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>  ⌂</code></td>
-            <td><code>n] = 1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>n] = 0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>   ⌂</code></td>
-            <td><code>] = 1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>] = 0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>     ⌂</code></td>
-            <td><code>= 1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>= 0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>       ⌂</code></td>
-            <td><code>1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>         ⌂</code></td>
-            <td><code>1, 1, ..., a[n-1] + a[n-2]</code></td>
+            <td><code>0, 1, ..., a[n-1] + a[n-2]</code></td>
             <td></td>
             <td></td>
         </tr>
@@ -595,7 +595,7 @@ As an exercise, let's take the proposed input and feed it through the rule, to s
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>                     ⌂  ⌂</code></td>
             <td><code>, 1, ..., a[n-1] + a[n-2]</code></td>
-            <td><code>1</code></td>
+            <td><code>0</code></td>
             <td></td>
         </tr>
         <tr>
@@ -616,7 +616,7 @@ As an exercise, let's take the proposed input and feed it through the rule, to s
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>                     ⌂  ⌂ <s>⌂</s></code></td>
             <td><code>, ..., a[n-1] + a[n-2]</code></td>
-            <td><code>1</code>, <code>1</code></td>
+            <td><code>0</code>, <code>1</code></td>
             <td></td>
         </tr>
         <tr>
@@ -630,28 +630,28 @@ As an exercise, let's take the proposed input and feed it through the rule, to s
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>         ⌂                ⌂</code></td>
             <td><code>..., a[n-1] + a[n-2]</code></td>
-            <td><code>1</code>, <code>1</code></td>
+            <td><code>0</code>, <code>1</code></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>         <s>⌂</s>                    ⌂</code></td>
             <td><code>, a[n-1] + a[n-2]</code></td>
-            <td><code>1</code>, <code>1</code></td>
+            <td><code>0</code>, <code>1</code></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>                                ⌂</code></td>
             <td><code>a[n-1] + a[n-2]</code></td>
-            <td><code>1</code>, <code>1</code></td>
+            <td><code>0</code>, <code>1</code></td>
             <td></td>
         </tr>
         <tr>
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>                                           ⌂</code></td>
             <td></td>
-            <td><code>1</code>, <code>1</code></td>
+            <td><code>0</code>, <code>1</code></td>
             <td><code>a[n-1] + a[n-2]</code></td>
         </tr>
         <tr>
@@ -715,7 +715,7 @@ This is a bit harder; we'll come back and look at *how* exactly to define `a`.  
 
 ```ignore
 
-    Recurrence { mem: [1, 1], pos: 0 }
+    Recurrence { mem: [0, 1], pos: 0 }
 };
 
 for e in fib.take(10) { println!("{}", e) }
@@ -752,7 +752,7 @@ let fib = {
         }
     }
 
-    Recurrence { mem: [1, 1], pos: 0 }
+    Recurrence { mem: [0, 1], pos: 0 }
 };
 
 for e in fib.take(10) { println!("{}", e) }
@@ -768,7 +768,7 @@ macro_rules! recurrence {
 }
 
 /*
-let fib = recurrence![a[n]: u64 = 1, 1, ..., a[n-1] + a[n-2]];
+let fib = recurrence![a[n]: u64 = 0, 1, ..., a[n-1] + a[n-2]];
 
 for e in fib.take(10) { println!("{}", e) }
 */
@@ -804,7 +804,7 @@ We can do this pretty easily with a wrapper type:
 
 ```ignore
 struct IndexOffset<'a> {
-    slice: &'a [u64, ..2],
+    slice: &'a [u64; 2],
     offset: usize,
 }
 
@@ -855,7 +855,7 @@ macro_rules! recurrence {
 
 fn main() {
     /*
-    let fib = recurrence![a[n]: u64 = 1, 1, ..., a[n-1] + a[n-2]];
+    let fib = recurrence![a[n]: u64 = 0, 1, ..., a[n-1] + a[n-2]];
 
     for e in fib.take(10) { println!("{}", e) }
     */
@@ -919,21 +919,21 @@ fn main() {
             }
         }
 
-        Recurrence { mem: [1, 1], pos: 0 }
+        Recurrence { mem: [0, 1], pos: 0 }
     };
 
     for e in fib.take(10) { println!("{}", e) }
 }
 ```
 
-Note that I've changed the order of the declarations of `n` and `a`, as well as wrapped them (along with the recurrence expression) in a block.  The reason for the first should be obvious (`n` needs to be defined first so I can use it for `a`).  The reason for the second is that the borrowed reference `&self.mem` will prevent the swaps later on from happening (you cannot mutate something that is alised elsewhere).  The block ensures that the `&self.mem` borrow expires before then.
+Note that I've changed the order of the declarations of `n` and `a`, as well as wrapped them (along with the recurrence expression) in a block.  The reason for the first should be obvious (`n` needs to be defined first so I can use it for `a`).  The reason for the second is that the borrowed reference `&self.mem` will prevent the swaps later on from happening (you cannot mutate something that is aliased elsewhere).  The block ensures that the `&self.mem` borrow expires before then.
 
 Incidentally, the only reason the code that does the `mem` swaps is in a block is to narrow the scope in which `std::mem::swap` is available, for the sake of being tidy.
 
 If we take this code and run it, we get:
 
 ```text
-1
+0
 1
 2
 3
@@ -942,7 +942,6 @@ If we take this code and run it, we get:
 13
 21
 34
-55
 ```
 
 Success!  Now, let's copy & paste this into the macro expansion, and replace the expanded code with an invocation.  This gives us:
@@ -1016,13 +1015,13 @@ macro_rules! recurrence {
                 }
             }
     
-            Recurrence { mem: [1, 1], pos: 0 }
+            Recurrence { mem: [0, 1], pos: 0 }
         }
     };
 }
 
 fn main() {
-    let fib = recurrence![a[n]: u64 = 1, 1, ..., a[n-1] + a[n-2]];
+    let fib = recurrence![a[n]: u64 = 0, 1, ..., a[n-1] + a[n-2]];
 
     for e in fib.take(10) { println!("{}", e) }
 }
@@ -1032,7 +1031,7 @@ Obviously, we aren't *using* the captures yet, but we can change that fairly eas
 
 ```text
 recurrence.rs:69:45: 69:48 error: local ambiguity: multiple parsing options: built-in NTs expr ('inits') or 1 other options.
-recurrence.rs:69     let fib = recurrence![a[n]: u64 = 1, 1, ..., a[n-1] + a[n-2]];
+recurrence.rs:69     let fib = recurrence![a[n]: u64 = 0, 1, ..., a[n-1] + a[n-2]];
                                                              ^~~
 ```
 
@@ -1050,12 +1049,12 @@ macro_rules! recurrence {
 //                                     ^~~ changed
         /* ... */
 #         // Cheat :D
-#         (vec![1u64, 1, 2, 3, 5, 8, 13, 21, 34, 55]).into_iter()
+#         (vec![0u64, 1, 2, 3, 5, 8, 13, 21, 34]).into_iter()
     };
 }
 
 fn main() {
-    let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+    let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
 //                                         ^~~ changed
 
     for e in fib.take(10) { println!("{}", e) }
@@ -1144,20 +1143,20 @@ macro_rules! recurrence {
 }
 
 fn main() {
-    let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+    let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
 
     for e in fib.take(10) { println!("{}", e) }
 }
 ```
 
-Let's tackle a harder one: how to turn `inits` into both the array literal `[1, 1]` *and* the array type, `[$sty; 2]`.  The first one we can do like so:
+Let's tackle a harder one: how to turn `inits` into both the array literal `[0, 1]` *and* the array type, `[$sty; 2]`.  The first one we can do like so:
 
 ```ignore
             Recurrence { mem: [$($inits),+], pos: 0 }
 //                             ^~~~~~~~~~~ changed
 ```
 
-This effectively does the opposite of the capture: repeat `inits` one or more times, separating each with a comma.  This expands to the expected sequence of tokens: `1, 1`.
+This effectively does the opposite of the capture: repeat `inits` one or more times, separating each with a comma.  This expands to the expected sequence of tokens: `0, 1`.
 
 Somehow turning `inits` into a literal `2` is a little trickier.  It turns out that there's no direct way to do this, but we *can* do it by using a second macro.  Let's take this one step at a time.
 
@@ -1374,7 +1373,7 @@ macro_rules! recurrence {
 /* ... */
 # 
 # fn main() {
-#     let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+#     let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
 # 
 #     for e in fib.take(10) { println!("{}", e) }
 # }
@@ -1392,11 +1391,11 @@ With that done, we can now substitute the last thing: the `recur` expression.
 #         {
 #             const MEMORY: uint = count_exprs!($($inits),+);
 #             struct Recurrence {
-#                 mem: [$sty, ..MEMORY],
+#                 mem: [$sty; MEMORY],
 #                 pos: uint,
 #             }
 #             struct IndexOffset<'a> {
-#                 slice: &'a [$sty, ..MEMORY],
+#                 slice: &'a [$sty; MEMORY],
 #                 offset: uint,
 #             }
 #             impl<'a> Index<uint, $sty> for IndexOffset<'a> {
@@ -1448,22 +1447,22 @@ And, when we compile our finished macro...
 
 ```text
 recurrence.rs:77:48: 77:49 error: unresolved name `a`
-recurrence.rs:77     let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+recurrence.rs:77     let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
                                                                 ^
 recurrence.rs:7:1: 74:2 note: in expansion of recurrence!
 recurrence.rs:77:15: 77:64 note: expansion site
 recurrence.rs:77:50: 77:51 error: unresolved name `n`
-recurrence.rs:77     let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+recurrence.rs:77     let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
                                                                   ^
 recurrence.rs:7:1: 74:2 note: in expansion of recurrence!
 recurrence.rs:77:15: 77:64 note: expansion site
 recurrence.rs:77:57: 77:58 error: unresolved name `a`
-recurrence.rs:77     let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+recurrence.rs:77     let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
                                                                          ^
 recurrence.rs:7:1: 74:2 note: in expansion of recurrence!
 recurrence.rs:77:15: 77:64 note: expansion site
 recurrence.rs:77:59: 77:60 error: unresolved name `n`
-recurrence.rs:77     let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+recurrence.rs:77     let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
                                                                            ^
 recurrence.rs:7:1: 74:2 note: in expansion of recurrence!
 recurrence.rs:77:15: 77:64 note: expansion site
@@ -1545,7 +1544,7 @@ fn main() {
                 }
             }
         }
-        Recurrence{mem: [1, 1], pos: 0,}
+        Recurrence{mem: [0, 1], pos: 0,}
     };
     {
         let result =
@@ -1574,7 +1573,7 @@ fn main() {
 
 But that looks fine!  If we add a few missing `#![feature(...)]` attributes and feed it to a nightly build of `rustc`, it even compiles!  ... *what?!*
 
-> **Aside**: You can't compile the above with a non-nightly build of `rustc`.  This is because the expansion of the `println!` macro depends on internal compiler details which are *not* publically stabilised.
+> **Aside**: You can't compile the above with a non-nightly build of `rustc`.  This is because the expansion of the `println!` macro depends on internal compiler details which are *not* publicly stabilised.
 
 ## Being Hygienic
 
@@ -1747,7 +1746,7 @@ macro_rules! recurrence {
 }
 
 fn main() {
-    let fib = recurrence![a[n]: u64 = 1, 1 ... a[n-1] + a[n-2]];
+    let fib = recurrence![a[n]: u64 = 0, 1 ... a[n-1] + a[n-2]];
 
     for e in fib.take(10) { println!("{}", e) }
 }
@@ -2091,12 +2090,14 @@ fn test_fib_10() {
 
 With that done, you can use `cargo test` to make sure the crate compiles and passes its one and only test, and `cargo doc` to generate the documentation and see if it looks alright.
 
-All you need to do now is to commit the changes to the repository, and publish it somewhere publically accessible (or privately, if you aren't interesting in letting other people use your awesome macro).  To use the crate, you just need to add a dependency to it in your crate's `Cargo.toml` and then link to it.  For example, [the completed recurrence crate](https://github.com/DanielKeep/rust-recurrence) is published as a Git repository.  To use it, just add it as a Cargo dependency.
+All you need to do now is to commit the changes to the repository, and publish it somewhere publicly accessible (or privately, if you aren't interesting in letting other people use your awesome macro).  To use the crate, you just need to add a dependency to it in your crate's `Cargo.toml` and then link to it.  For example, [the completed recurrence crate](https://github.com/DanielKeep/rust-recurrence) is published as a Git repository.  To use it, just add it as a Cargo dependency.
 
 Now, go forth and metaprogram!
 
 # Postscript
 
 Thanks to `snake_case`, `Yurume`, `Rym`, and `ogham` for providing feedback.
+
+Thanks to `akavel`, and `TheMicroWorm` for spotting some typos.
 
 This work is licensed under both the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/) and the [MIT license](http://opensource.org/licenses/MIT).
