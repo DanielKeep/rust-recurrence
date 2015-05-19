@@ -609,7 +609,7 @@ As an exercise, let's take the proposed input and feed it through the rule, to s
             <td><code>a[n] = $($inits:expr),+ , ... , $recur:expr</code>
                 <code>         ⌂                ⌂</code></td>
             <td><code>1, ..., a[n-1] + a[n-2]</code></td>
-            <td><code>1</code></td>
+            <td><code>0</code></td>
             <td></td>
         </tr>
         <tr>
