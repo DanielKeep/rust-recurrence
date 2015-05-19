@@ -813,8 +813,14 @@ impl<'a> Index<usize> for IndexOffset<'a> {
 
     #[inline(always)]
     fn index<'b>(&'b self, index: usize) -> &'b u64 {
-        let real_index = *index - self.offset + 2;
-        &self.slice[real_index]
+        use std::num::Wrapping;
+
+        let index = Wrapping(index);
+        let offset = Wrapping(self.offset);
+        let window = Wrapping(2);
+
+        let real_index = index - offset + window;
+        &self.slice[real_index.0]
     }
 }
 ```
