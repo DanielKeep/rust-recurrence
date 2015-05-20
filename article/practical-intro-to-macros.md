@@ -1936,7 +1936,7 @@ macro_rules! X { () => ("X") }
     </tr>
 </table>
 
-Note that the definition of `X` cuts clear through the module heirarchy and across files.  For this reason, I personally recommend that you always define macros in the *first* module defined in a library, or at the top of your `lib.rs` or `main.rs` file.
+Note that the definition of `X` cuts clear through the module hierarchy and across files.  For this reason, I personally recommend that you always define macros in the *first* module defined in a library, or at the top of your `lib.rs` or `main.rs` file.
 
 **Macros are individually exported.** In order to make a macro available to other crates, you have to use the `#[macro_export]` attribute.  Note that this and `#[macro_use]` are *unrelated*.  You can have a macro exported to other crates, but which is not available to most of your own crate.  So, for example:
 
