@@ -1950,7 +1950,7 @@ This would make `X` available to other crates.  However...
 
 **Macros aren't regular items.** That is, you cannot access macros simply by using `extern crate stuff;`.  Instead, you need to use `#[macro_use] extern crate stuff;`.  This tells the compiler that it needs to load `libstuff` at compile time, in addition to at runtime.
 
-You can also limit which macros you pull in from an external crate by specifying their names like so: `#[macro_use(macro_a, thingy="macro_b")] extern crate stuff;`.
+You can also limit which macros you pull in from an external crate by specifying their names like so: `#[macro_use(macro_a, macro_b)] extern crate stuff;`.
 
 # Distribution
 
